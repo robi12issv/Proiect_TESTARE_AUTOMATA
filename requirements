@@ -1,0 +1,4 @@
+selenium==4.17.2
+webdriver_manager==4.0.1
+behave==1.2.6
+behave_html_formatter==0.9.10
