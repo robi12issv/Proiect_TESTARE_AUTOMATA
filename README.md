@@ -4,9 +4,13 @@ which I installed from the terminal using the syntax "pip install <library name>
 From the selenium library, I imported the following libraries: webdriver, Service, ChromeDriverManager, expected_conditions, WebDriverWait, By.
 
 The project is structured into 3 main folders:
+
 "utils", where the main class and its methods are defined, which are applied to each test performed on the site;
+
 "pages", where Python files are stored containing the lines of code related to the classes and methods necessary for each test individually;
+
 "steps", where BDD-type Python files are stored containing the steps related to the correct execution of each test.
+
 The "features" folder also contains the Gerkin file "vexio.feature" from which the tests will be run.
 
 For cloning the project, open your preferred IDE, and in the terminal, enter the command "git clone" followed by the project link, like this: git clone https://github.com/robi12issv/ProiectTESTARE_AUTOMATA.git
