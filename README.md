@@ -16,33 +16,34 @@ For example, to run the product comparison test, all "_steps" files except "comp
 Each scenario has a commented line that indicates which "_steps" and "_pages" files contain the code and steps for the scenario to run.
 
 Explained scenarios:
-    Feature: Search a product on the main page
 
+Navigates to the main page of the website, identifying the search bar, entering the name of the desired product, and searching for it, ultimately resulting in redirection to the product page.
       #main_page -- search_steps
-  Scenario: Finding the product                                            Navigates to the main page of the website, identifying the search bar, entering the name of the desired product, and searching for it, ultimately resulting in redirection to the product page.
-    Given I am on the main page
-    When I enter the product name
-    And I click the search button
-    Then I should see all those products
+  #Scenario: Finding the product                                            
+    #Given I am on the main page
+    #When I enter the product name
+    #And I click the search button
+    #Then I should see all those products
 
+Based on the details of each product, it will verify whether there are only products of the searched type on the page, or if there are additional products and how many there are.
     #products_page -- comparison_steps
-  Scenario: The list contains only the correct type of products             Based on the details of each product, it will verify whether there are only products of the searched type on the page, or if there are additional products and how many there are.
-    Given I am on the products page
-    When I verify the number of the products
-    Then I verify if there are incorrect products displayed
+  #Scenario: The list contains only the correct type of products             
+    #Given I am on the products page
+    #When I verify the number of the products
+    #Then I verify if there are incorrect products displayed
 
-Feature: Filtering the products
-
+Both prices will be entered simultaneously, and then the "Aplicare filtru preț" button will be pressed.
     #price_page -- price_steps
-  Scenario: By price                                                      Both prices will be entered simultaneously, and then the "Aplicare filtru preț" button will be pressed.       
-    Given I am on the product page
-    When I type the inferior price
-    And I type the superior price
-    And I submit the request
-    Then I should see the products in that range
+  #Scenario: By price                                                             
+    #Given I am on the product page
+    #When I type the inferior price
+    #And I type the superior price
+    #And I submit the request
+    #Then I should see the products in that range
 
+First, the lower price limit will be entered, followed by pressing the "Apply Price Filter" button. Then, the upper price limit will be entered, and the "Apply Price Filter" button will be pressed again.
     #price_page -- price_steps
-  Scenario: Introducing lower price first                                 First, the lower price limit will be entered, followed by pressing the "Apply Price Filter" button. Then, the upper price limit will be entered, and the "Apply Price Filter" button will be pressed again.
+ # Scenario: Introducing lower price first                                 
     Given I am on the product page
     When I type the inferior price
     And I submit the request
