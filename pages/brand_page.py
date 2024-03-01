@@ -4,15 +4,18 @@ from pages.products_page import ProductsPage
 
 
 class BrandPage(ProductsPage):
+    BRAND_BTN = By.XPATH, '//div[@class="list-group slimscroll"]/a[4]'
+    brand_name = "baseus"
+    BRAND_ITEMS = By.CSS_SELECTOR, "article"
+    CORRECT_BRAND = By.XPATH, f'//div[@class="clearfix"]/div[contains(text(), {brand_name})]'
 
     def get_brand(self):
-        brand_btn = self.driver.find_element(By.XPATH, '//div[@class="list-group slimscroll"]/a[4]')
+        brand_btn = self.driver.find_element(self.BRAND_BTN)
         brand_btn.click()
 
     def brand_nr(self):
-        brand_name = "baseus"
-        brand_items = list(self.driver.find_elements(By.CSS_SELECTOR, "article"))
-        correct_brand = list(self.driver.find_elements(By.XPATH, f'//div[@class="clearfix"]/div[contains(text(), {brand_name})]'))
+        brand_items = list(self.driver.find_elements(self.BRAND_ITEMS))
+        correct_brand = list(self.driver.find_elements(self.CORRECT_BRAND))
         if len(correct_brand) == len(brand_items):
             print('Filtrarea a fost facuta corect')
 

@@ -1,33 +1,29 @@
-import time
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from utils.webdriver import WebDriver
+from pages.main_page import MainPage
 
 
-class ProductsPage(WebDriver):
+class ProductsPage(MainPage):
+    ALL_PRODUCTS = By.XPATH, '//*[@class="h5 name"]/a[@data-ecproduct="true"]'
+    CORRECT_PRODUCTS = By.XPATH, '//a[contains(text(), "Incarcator")]'
 
     def get_products(self, product_name):
-        self.driver.get("https://www.vexio.ro/")
-        time.sleep(2)
-        search_box = self.driver.find_element(By.XPATH, '//input[@id="search-box" and @spellcheck]')
-        search_box = WebDriverWait(self.driver, 10).until((
-            EC.presence_of_element_located((By.XPATH, '//input[@id="search-box" and @spellcheck]'))
-        ))
-        time.sleep(3)
+        self.driver.get(self.MAIN_PAGE)
+        search_box = self.driver.find_element(self.SEARCH_BOX)
+        search_box = WebDriverWait(self.driver, 10).until((EC.presence_of_element_located(self.SEARCH_BOX)))
         search_box.send_keys(product_name)
-        search_button = self.driver.find_element(By.XPATH, '//span[@class="input-group-btn"]/button[@type="submit"]')
+        search_button = self.driver.find_element(self.SEARCH_BUTTON)
         search_button.click()
 
     def products_number(self):
-        all_products_list = self.driver.find_elements(By.XPATH, '//*[@class="h5 name"]/a[@data-ecproduct="true"]')
+        all_products_list = self.driver.find_elements(self.ALL_PRODUCTS)
         print(len(all_products_list))
 
     def products_type(self):
-        all_products_list = self.driver.find_elements(By.XPATH, '//*[@class="h5 name"]/a[@data-ecproduct="true"]')
-        correct_products_list = self.driver.find_elements(By.XPATH, '//a[contains(text(), "Incarcator")]')
+        all_products_list = self.driver.find_elements(self.ALL_PRODUCTS)
+        correct_products_list = self.driver.find_elements(self.CORRECT_PRODUCTS)
         other_products = []
         for i in all_products_list:
             if i not in correct_products_list:
