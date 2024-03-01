@@ -56,7 +56,7 @@ Feature: Search a product on the main page
 
     
  # Scenario: By price
-             price_page -- price_steps
+             #price_page -- price_steps
     Given I am on the product page
     When I type the inferior price
     And I type the superior price
@@ -68,7 +68,7 @@ Feature: Search a product on the main page
 
   
  # Scenario: Introducing lower price first
-            price_page -- price_steps
+            #price_page -- price_steps
     Given I am on the product page
     When I type the inferior price
     And I submit the request
@@ -80,7 +80,7 @@ Feature: Search a product on the main page
 
     
  # Scenario: Introducing higher price first
-            price_page -- price_steps
+            #price_page -- price_steps
     Given I am on the product page
     When I type the superior price
     And I submit the request
@@ -92,7 +92,7 @@ Feature: Search a product on the main page
 
     
  # Scenario: By brand                                                      
-          brand_page -- brand_steps
+          #brand_page -- brand_steps
     Given I am on the product page
     When I choose the brand
     Then I should see the products of that brand
@@ -103,7 +103,7 @@ Feature: Search a product on the main page
 Feature: Adding products to cart
 
  # Scenario: Adding the product from the product page
-          cart_page -- cart_steps
+          #cart_page -- cart_steps
     Given I am on the chargers page
     When I find the suitable product
     And I add it to cart
@@ -113,7 +113,7 @@ Feature: Adding products to cart
 
 
  # Scenario: Adding the product from all the products page    
-            cart_page -- cart_steps
+           #cart_page -- cart_steps
     Given I am on the chargers page
     When I add it to cart
     Then I see cart page
@@ -121,7 +121,7 @@ Feature: Adding products to cart
     This scenario tests, using the same methods, adding a product to the cart directly from the page with all the products found after the search.
 
  # Scenario: Adding to cart after brand sorting                              
-          cart_brand_page -- cart_brand_steps
+          #cart_brand_page -- cart_brand_steps
     Given I am on the chargers page
     When I sort the products
     And I find the suitable product
