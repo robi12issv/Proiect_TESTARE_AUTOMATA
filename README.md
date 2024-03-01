@@ -17,33 +17,43 @@ Each scenario has a commented line that indicates which "_steps" and "_pages" fi
 
 Explained scenarios:
 
-Navigates to the main page of the website, identifying the search bar, entering the name of the desired product, and searching for it, ultimately resulting in redirection to the product page.
-      #main_page -- search_steps
-  #Scenario: Finding the product                                            
-    #Given I am on the main page
-    #When I enter the product name
-    #And I click the search button
-    #Then I should see all those products
+Feature: Search a product on the main page
 
-Based on the details of each product, it will verify whether there are only products of the searched type on the page, or if there are additional products and how many there are.
-    #products_page -- comparison_steps
-  #Scenario: The list contains only the correct type of products             
-    #Given I am on the products page
-    #When I verify the number of the products
-    #Then I verify if there are incorrect products displayed
+ # Scenario: Finding the product
+            main_page -- search_steps
+    Given I am on the main page
+    When I enter the product name
+    And I click the search button
+    Then I should see all those products
 
-Both prices will be entered simultaneously, and then the "Aplicare filtru preț" button will be pressed.
-    #price_page -- price_steps
-  #Scenario: By price                                                             
-    #Given I am on the product page
-    #When I type the inferior price
-    #And I type the superior price
-    #And I submit the request
-    #Then I should see the products in that range
+    Navigates to the main page of the website, identifying the search bar, entering the name of the desired product, and searching for it, ultimately resulting in redirection to the product page.
 
-First, the lower price limit will be entered, followed by pressing the "Apply Price Filter" button. Then, the upper price limit will be entered, and the "Apply Price Filter" button will be pressed again.
-    #price_page -- price_steps
- # Scenario: Introducing lower price first                                 
+
+    
+  # Scenario: The list contains only the correct type of products
+              products_page -- comparison_steps
+    Given I am on the products page
+    When I verify the number of the products
+    Then I verify if there are incorrect products displayed
+
+    Based on the details of each product, it will verify whether there are only products of the searched type on the page, or if there are additional products and how many there are.
+
+
+    
+ # Scenario: By price
+             price_page -- price_steps
+    Given I am on the product page
+    When I type the inferior price
+    And I type the superior price
+    And I submit the request
+    Then I should see the products in that range
+
+    Both prices will be entered simultaneously, and then the "Aplicare filtru preț" button will be pressed.
+
+
+  
+ # Scenario: Introducing lower price first
+            price_page -- price_steps
     Given I am on the product page
     When I type the inferior price
     And I submit the request
@@ -51,8 +61,11 @@ First, the lower price limit will be entered, followed by pressing the "Apply Pr
     And I submit the request again
     Then I should see the products in that range
 
-    #price_page -- price_steps
-  Scenario: Introducing higher price first                                First, the upper price limit will be entered, followed by pressing the "Apply Price Filter" button. Then, the lower price limit will be entered, and the "Apply Price Filter" button will be pressed again. 
+    First, the lower price limit will be entered, followed by pressing the "Apply Price Filter" button. Then, the upper price limit will be entered, and the "Apply Price Filter" button will be pressed again.
+
+    
+ # Scenario: Introducing higher price first
+            price_page -- price_steps
     Given I am on the product page
     When I type the superior price
     And I submit the request
@@ -60,31 +73,44 @@ First, the lower price limit will be entered, followed by pressing the "Apply Pr
     And I submit the request again
     Then I should see the products in that range
 
-    #brand_page -- brand_steps
-  Scenario: By brand                                                      This scenario involves navigating to the page of the searched products, applying a brand filter, and verifying if after applying the filter, the page contains other products as well.
+    First, the upper price limit will be entered, followed by pressing the "Apply Price Filter" button. Then, the lower price limit will be entered, and the "Apply Price Filter" button will be pressed again.
+
+    
+ # Scenario: By brand                                                      
+          brand_page -- brand_steps
     Given I am on the product page
     When I choose the brand
     Then I should see the products of that brand
 
+    This scenario involves navigating to the page of the searched products, applying a brand filter, and verifying if after applying the filter, the page contains other products as well.
+    
+
 Feature: Adding products to cart
 
-     #cart_page -- cart_steps
-  Scenario: Adding the product from the product page                        It will navigate to the page with the searched products, then navigate to the product page, identify the add-to-cart button, and implement the action.
+ # Scenario: Adding the product from the product page
+          cart_page -- cart_steps
     Given I am on the chargers page
     When I find the suitable product
     And I add it to cart
     Then I see cart page
+    
+    It will navigate to the page with the searched products, then navigate to the product page, identify the add-to-cart button, and implement the action.
 
-   #cart_page -- cart_steps
-  Scenario: Adding the product from all the products page                   This scenario tests, using the same methods, adding a product to the cart directly from the page with all the products found after the search.
+
+ # Scenario: Adding the product from all the products page    
+            cart_page -- cart_steps
     Given I am on the chargers page
     When I add it to cart
     Then I see cart page
 
-    #cart_brand_page -- cart_brand_steps
-  Scenario: Adding to cart after brand sorting                              The third scenario tests adding a product to the cart after filtering based on the brand of the products.
+    This scenario tests, using the same methods, adding a product to the cart directly from the page with all the products found after the search.
+
+ # Scenario: Adding to cart after brand sorting                              
+          cart_brand_page -- cart_brand_steps
     Given I am on the chargers page
     When I sort the products
     And I find the suitable product
     And I add it to cart
     Then I see cart page
+
+    The third scenario tests adding a product to the cart after filtering based on the brand of the products.
