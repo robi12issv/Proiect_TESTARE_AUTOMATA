@@ -1,7 +1,12 @@
 The project was written in Python, using the PyCharm IDE. I used the following libraries: 
+
 selenium, behave, webdriver_manager, behave_html_formatter
+
 which I installed from the terminal using the syntax "pip install <library name>". 
+
 From the selenium library, I imported the following libraries: webdriver, Service, ChromeDriverManager, expected_conditions, WebDriverWait, By.
+
+
 
 The project is structured into 3 main folders:
 
@@ -13,11 +18,17 @@ The project is structured into 3 main folders:
 
 The "features" folder also contains the Gerkin file "vexio.feature" from which the tests will be run.
 
+
 For cloning the project, open your preferred IDE, and in the terminal, enter the command "git clone" followed by the project link, like this: git clone https://github.com/robi12issv/ProiectTESTARE_AUTOMATA.git
+
 Reports can be accessed from the "Reports" folder. They are named after the "_step" file that was run. Additionally, new reports can be created using the following syntax in the terminal: behave -f behave_html_formatter:HTMLFormatter -o behave-report.html
+
 The tests are run from the "vexio.feature" file. Each scenario will be tested individually through the "Run" function, which is implemented in each scenario. When running a test, it is important that all other "_steps" files and scenarios from "vexio.feature" are commented out. 
+
 For example, to run the product comparison test, all "_steps" files except "comparison_steps" should be commented out, and all scenarios except "Scenario: The list contains only the correct type of products" (with the corresponding feature) should also be commented out.
+
 Each scenario has a commented line that indicates which "_steps" and "_pages" files contain the code and steps for the scenario to run.
+
 
 Explained scenarios:
 
