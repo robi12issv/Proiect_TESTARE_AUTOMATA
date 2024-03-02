@@ -19,7 +19,7 @@ The project is structured into 3 main folders:
 The "features" folder also contains the Gerkin file "vexio.feature" from which the tests will be run.
 
 
-For cloning the project, open your preferred IDE, and in the terminal, enter the command "git clone" followed by the project link, like this: git clone https://github.com/robi12issv/ProiectTESTARE_AUTOMATA.git
+For cloning the project, open your preferred IDE, and in the terminal, enter the command "git clone" followed by the project link, like this: git clone https://github.com/robi12issv/Proiect_TESTARE_AUTOMATA.git
 
 Reports can be accessed from the "Reports" folder. They are named after the "_step" file that was run. Additionally, new reports can be created using the following syntax in the terminal: behave -f behave_html_formatter:HTMLFormatter -o behave-report.html
 
