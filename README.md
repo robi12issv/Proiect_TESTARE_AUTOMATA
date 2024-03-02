@@ -14,14 +14,13 @@ The project is structured into 3 main folders:
 
 "pages", where Python files are stored containing the lines of code related to the classes and methods necessary for each test individually;
 
-"steps", where BDD-type Python files are stored containing the steps related to the correct execution of each test.
-
-The "features" folder also contains the Gerkin file "vexio.feature" from which the tests will be run.
+"features" with the folder "steps", where BDD Python files are stored containing the steps corresponding to the correct execution of each test. In "features," the Gerkin file "vexio.feature" is also located, from which the tests will be run.
 
 
 For cloning the project, open your preferred IDE, and in the terminal, enter the command "git clone" followed by the project link, like this: git clone https://github.com/robi12issv/Proiect_TESTARE_AUTOMATA.git
 
-Reports can be accessed from the "Reports" folder. They are named after the "_step" file that was run. Additionally, new reports can be created using the following syntax in the terminal: behave -f behave_html_formatter:HTMLFormatter -o behave-report.html
+Reports can be accessed from the "Reports" folder. They are named after the "_step" file that was run. Additionally, new reports can be created using the following syntax in the terminal: behave -f behave_html_formatter:HTMLFormatter -o behave-report.html. 
+The reports are named after the feature number, scenario number, and the "_steps" file. For example: f1_s1_search_steps
 
 The tests are run from the "vexio.feature" file. Each scenario will be tested individually through the "Run" function, which is implemented in each scenario. When running a test, it is important that all other "_steps" files and scenarios from "vexio.feature" are commented out. 
 
@@ -43,6 +42,20 @@ Feature: Search a product on the main page
 
     Navigates to the main page of the website, identifying the search bar, entering the name of the desired product, and searching for it, ultimately resulting in redirection to the product page.
 
+
+#  Scenario Outline: Finding the product by incorrect name
+        main_page -- search_steps
+    Given I am on the main page
+    When I enter the "<product>"
+    And I click the search button
+    Then I should see all those products
+      Examples:
+      | product        |
+      | incarcator140w |
+      | incarcaor 140w |
+      | incarcator 140 |
+
+    Navigates to the main page of the website, identifying the search bar, entering the name of the desired product in diferent forms, both correct and incorrect.
 
     
   # Scenario: The list contains only the correct type of products
@@ -112,13 +125,18 @@ Feature: Adding products to cart
     It will navigate to the page with the searched products, then navigate to the product page, identify the add-to-cart button, and implement the action.
 
 
- # Scenario: Adding the product from all the products page    
+ # Scenario Outline: Adding the product from all the products page    
            #cart_page -- cart_steps
     Given I am on the chargers page
     When I add it to cart
-    Then I see cart page
+    Then I verify "<pg_title>"
 
-    This scenario tests, using the same methods, adding a product to the cart directly from the page with all the products found after the search.
+    Examples:
+      | pg_title                   |
+      | Nu uita sa trimiti comanda |
+      | Just a moment...           |
+
+    This scenario adds a product to the cart directly from the products page and then compares page's title with the expectet page title.
 
  # Scenario: Adding to cart after brand sorting                              
           #cart_brand_page -- cart_brand_steps

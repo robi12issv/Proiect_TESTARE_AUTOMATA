@@ -7,6 +7,7 @@ class CartPage(BrandPage):
     WANTED_PRODUCT = (By.XPATH, '//*[@class="h5 name"]/a[@title="Incarcator de retea Baseus GaN5 Pro, 2 porturi USB C si 1 port USB, Cablu USB C la USB C, 140W, Negru"]')
     CART_BUTTON1 = (By.ID, "add_to_cart_button")
     CART_BUTTON2 = (By.XPATH, '//*[@href=" /adaugaincos-1949700"]')
+    TITLE = 'Incarcator de retea Baseus GaN5 Pro, 2 porturi USB C si 1 port USB, Cablu USB C la USB C, 140W, Negru Pret: 289,99 lei - Vexio'
 
     def choose_product(self):
         self.click_button(self.WANTED_PRODUCT)
@@ -31,5 +32,5 @@ class CartPage(BrandPage):
     #     assert self.driver.title == 'Just a moment...', 'A aparut pagina de verificare, testul nu mai poate continua.'
 
     def product_page(self):
-        assert self.driver.title == 'Incarcator de retea Baseus GaN5 Pro, 2 porturi USB C si 1 port USB, Cablu USB C la USB C, 140W, Negru Pret: 289,99 lei - Vexio', 'A aparut pagina de verificare, testul nu mai poate continua.'
+        assert self.driver.title == self.TITLE, 'A aparut pagina de verificare, testul nu mai poate continua.'
 
