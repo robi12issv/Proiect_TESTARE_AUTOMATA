@@ -10,20 +10,17 @@ class ProductsPage(MainPage):
     CORRECT_PRODUCTS = By.XPATH, '//a[contains(text(), "Incarcator")]'
 
     def get_products(self, product_name):
-        self.driver.get(self.MAIN_PAGE)
-        search_box = self.driver.find_element(self.SEARCH_BOX)
-        search_box = WebDriverWait(self.driver, 10).until((EC.presence_of_element_located(self.SEARCH_BOX)))
-        search_box.send_keys(product_name)
-        search_button = self.driver.find_element(self.SEARCH_BUTTON)
-        search_button.click()
+        self.load()
+        self.enter_item(product_name)
+        self.click_search_button()
 
     def products_number(self):
-        all_products_list = self.driver.find_elements(self.ALL_PRODUCTS)
+        all_products_list = self.get_elements(*self.ALL_PRODUCTS)
         print(len(all_products_list))
 
     def products_type(self):
-        all_products_list = self.driver.find_elements(self.ALL_PRODUCTS)
-        correct_products_list = self.driver.find_elements(self.CORRECT_PRODUCTS)
+        all_products_list = self.get_elements(*self.ALL_PRODUCTS)
+        correct_products_list = self.get_elements(*self.CORRECT_PRODUCTS)
         other_products = []
         for i in all_products_list:
             if i not in correct_products_list:

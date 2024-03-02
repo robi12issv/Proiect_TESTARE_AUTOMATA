@@ -10,12 +10,11 @@ class BrandPage(ProductsPage):
     CORRECT_BRAND = By.XPATH, f'//div[@class="clearfix"]/div[contains(text(), {brand_name})]'
 
     def get_brand(self):
-        brand_btn = self.driver.find_element(self.BRAND_BTN)
-        brand_btn.click()
+        self.click_button(self.BRAND_BTN)
 
     def brand_nr(self):
-        brand_items = list(self.driver.find_elements(self.BRAND_ITEMS))
-        correct_brand = list(self.driver.find_elements(self.CORRECT_BRAND))
+        brand_items = list(self.get_elements(*self.BRAND_ITEMS))
+        correct_brand = list(self.get_elements(*self.CORRECT_BRAND))
         if len(correct_brand) == len(brand_items):
             print('Filtrarea a fost facuta corect')
 
