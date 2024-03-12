@@ -1,149 +1,70 @@
-The project was written in Python, using the PyCharm IDE. I used the following libraries: 
+TESTED APPLICATION
 
-selenium, behave, webdriver_manager, behave_html_formatter
+https://www.vexio.ro
 
-which I installed from the terminal using the syntax "pip install <library name>". 
+I chose to test the Vexio website, an e-commerce site, because I've personally used it and found certain errors. The site has basic e-commerce functionalities, such as product search, filtering them using certain parameters, and adding them to the cart. More specifically, I tested the page displaying products resulting from searching for a specific item.
 
-From the selenium library, I imported the following libraries: webdriver, Service, ChromeDriverManager, expected_conditions, WebDriverWait, By.
+LANGUAGE, IDE, BOOKSTORES
 
+The project was written in Python, using the PyCharm IDE. I used the following libraries: selenium, webdriver_manager, behave_html_formatter which I installed from the terminal using the syntax "pip install <library name>". From the selenium library, I imported the following libraries: webdriver, Service, ChromeDriverManager, expected_conditions, WebDriverWait, By.
 
+THE IMPORTANCE OF AUTOMATED TESTING
 
-The project is structured into 3 main folders:
+Automated testing expands the range of tests available to be executed on UX. It includes tools through which elements that the end customer cannot directly interact with can be tested, so they cannot be manually tested. Moreover, it allows for comparing the obtained results with theoretically correct results. Since automated testing involves writing methods in a programming language, once the code is written, unlimited tests can be performed in a short time, as there is no need to repeat the entire process manually.
 
-"utils", where the main class and its methods are defined, which are applied to each test performed on the site;
+THE CHOSEN METHODOLOGY AND DESIGN PATTERN
 
-"pages", where Python files are stored containing the lines of code related to the classes and methods necessary for each test individually;
+I used BDD, that promotes teamwork by describing app behavior using simple language like Gherkin, improving communication and ensuring user expectations are met through automated tests reflecting specified behavior. For design pattern I used "POM" that offers advantages like modularity, reusability, readability, maintainability, enabling parallel execution, and fostering collaboration between developers and testers.
 
-"features" with the folder "steps", where BDD Python files are stored containing the steps corresponding to the correct execution of each test. In "features," the Gerkin file "vexio.feature" is also located, from which the tests will be run.
+THE PROJECT'S STRUCTURE:
 
+The project is structured into 4 main folders:
 
-For cloning the project, open your preferred IDE, and in the terminal, enter the command "git clone" followed by the project link, like this: git clone https://github.com/robi12issv/Proiect_TESTARE_AUTOMATA.git
+- "utils", where the main class and its methods are defined, which are applied to each test performed on the site;
+
+- "pages", where Python files are stored containing the lines of code related to the classes and methods necessary for each test individually;
+
+- "steps" where BDD Python files are stored containing the steps corresponding to the correct execution of each test;
+
+- "features" with the Gerkin files ".feature" that contain the features and scenarios that are to be tested.
+
+PROJECT USE INSTRUCTIONS
+
+For cloning the project, open your preferred IDE and in the terminal, enter the command "git clone" followed by the project link, like this: git clone https://github.com/robi12issv/Proiect_TESTARE_AUTOMATA.git. 
 
 Reports can be accessed from the "Reports" folder. They are named after the "_step" file that was run. Additionally, new reports can be created using the following syntax in the terminal: behave -f behave_html_formatter:HTMLFormatter -o behave-report.html. 
 The reports are named after the feature number, scenario number, and the "_steps" file. For example: f1_s1_search_steps
 
-The tests are run from the "vexio.feature" file. Each scenario will be tested individually through the "Run" function, which is implemented in each scenario. When running a test, it is important that all other "_steps" files and scenarios from "vexio.feature" are commented out. 
+The tests are run from the ".feature" fileS. Each scenario will be tested individually through the "Run" function, which is implemented in each scenario. When running a test, it is important that all other "_steps" files and scenarios from "vexio.feature" are commented out. 
 
 For example, to run the product comparison test, all "_steps" files except "comparison_steps" should be commented out, and all scenarios except "Scenario: The list contains only the correct type of products" (with the corresponding feature) should also be commented out.
 
 Each scenario has a commented line that indicates which "_steps" and "_pages" files contain the code and steps for the scenario to run.
 
+EXPLAINED SCENARIOS
 
-Explained scenarios:
+   - Scenario: Finding the product
+     Navigates to the main page of the website, identifying the search bar, entering the name of the desired product, and searching for it, ultimately resulting in redirection to the product page.
+   - Scenario Outline: Finding the product by incorrect name: 
+     Navigates to the main page of the website, identifying the search bar, entering the name of the desired product in diferent forms, both correct and incorrect.
+   - Scenario: The list contains only the correct type of products: 
+     Based on the details of each product, it will verify whether there are only products of the searched type on the page, or if there are additional products and how many there are.
+   - Scenario: By price: 
+     Both prices will be entered simultaneously, and then the "Aplicare filtru preț" button will be pressed.
+   - Scenario: Introducing lower price first: 
+     First, the lower price limit will be entered, followed by pressing the "Apply Price Filter" button. Then, the upper price limit will be entered, and the "Apply Price Filter" button will be pressed again.
+   - Scenario: Introducing higher price first: 
+     First, the upper price limit will be entered, followed by pressing the "Apply Price Filter" button. Then, the lower price limit will be entered, and the "Apply Price Filter" button will be pressed again.
+   - Scenario: By brand:                                                       
+     This scenario involves navigating to the page of the searched products, applying a brand filter, and verifying if after applying the filter, the page contains other products as well.
+   - Scenario: Adding the product from the product page: 
+     It will navigate to the page with the searched products, then navigate to the product page, identify the add-to-cart button, and implement the action.
+   - Scenario Outline: Adding the product from all the products page:     
+     This scenario adds a product to the cart directly from the products page and then compares page's title with the expectet page title.
+   - Scenario: Adding to cart after brand sorting: 
+     The third scenario tests adding a product to the cart after filtering based on the brand of the products.
 
-Feature: Search a product on the main page
+SCREENSHOTS WITH THE CODE
 
- # Scenario: Finding the product
-            main_page -- search_steps
-    Given I am on the main page
-    When I enter the product name
-    And I click the search button
-    Then I should see all those products
-
-    Navigates to the main page of the website, identifying the search bar, entering the name of the desired product, and searching for it, ultimately resulting in redirection to the product page.
-
-
-#  Scenario Outline: Finding the product by incorrect name
-        main_page -- search_steps
-    Given I am on the main page
-    When I enter the "<product>"
-    And I click the search button
-    Then I should see all those products
-      Examples:
-      | product        |
-      | incarcator140w |
-      | incarcaor 140w |
-      | incarcator 140 |
-
-    Navigates to the main page of the website, identifying the search bar, entering the name of the desired product in diferent forms, both correct and incorrect.
-
-    
-  # Scenario: The list contains only the correct type of products
-              products_page -- comparison_steps
-    Given I am on the products page
-    When I verify the number of the products
-    Then I verify if there are incorrect products displayed
-
-    Based on the details of each product, it will verify whether there are only products of the searched type on the page, or if there are additional products and how many there are.
-
-
-    
- # Scenario: By price
-             #price_page -- price_steps
-    Given I am on the product page
-    When I type the inferior price
-    And I type the superior price
-    And I submit the request
-    Then I should see the products in that range
-
-    Both prices will be entered simultaneously, and then the "Aplicare filtru preț" button will be pressed.
-
-
-  
- # Scenario: Introducing lower price first
-            #price_page -- price_steps
-    Given I am on the product page
-    When I type the inferior price
-    And I submit the request
-    And I type the superior price
-    And I submit the request again
-    Then I should see the products in that range
-
-    First, the lower price limit will be entered, followed by pressing the "Apply Price Filter" button. Then, the upper price limit will be entered, and the "Apply Price Filter" button will be pressed again.
-
-    
- # Scenario: Introducing higher price first
-            #price_page -- price_steps
-    Given I am on the product page
-    When I type the superior price
-    And I submit the request
-    And I type the inferior price
-    And I submit the request again
-    Then I should see the products in that range
-
-    First, the upper price limit will be entered, followed by pressing the "Apply Price Filter" button. Then, the lower price limit will be entered, and the "Apply Price Filter" button will be pressed again.
-
-    
- # Scenario: By brand                                                      
-          #brand_page -- brand_steps
-    Given I am on the product page
-    When I choose the brand
-    Then I should see the products of that brand
-
-    This scenario involves navigating to the page of the searched products, applying a brand filter, and verifying if after applying the filter, the page contains other products as well.
-    
-
-Feature: Adding products to cart
-
- # Scenario: Adding the product from the product page
-          #cart_page -- cart_steps
-    Given I am on the chargers page
-    When I find the suitable product
-    And I add it to cart
-    Then I see cart page
-    
-    It will navigate to the page with the searched products, then navigate to the product page, identify the add-to-cart button, and implement the action.
-
-
- # Scenario Outline: Adding the product from all the products page    
-           #cart_page -- cart_steps
-    Given I am on the chargers page
-    When I add it to cart
-    Then I verify "<pg_title>"
-
-    Examples:
-      | pg_title                   |
-      | Nu uita sa trimiti comanda |
-      | Just a moment...           |
-
-    This scenario adds a product to the cart directly from the products page and then compares page's title with the expectet page title.
-
- # Scenario: Adding to cart after brand sorting                              
-          #cart_brand_page -- cart_brand_steps
-    Given I am on the chargers page
-    When I sort the products
-    And I find the suitable product
-    And I add it to cart
-    Then I see cart page
-
-    The third scenario tests adding a product to the cart after filtering based on the brand of the products.
+The relationship between ".feature" file, "_steps" file and "page" file:
+<img width="1794" alt="image" src="https://github.com/robi12issv/Proiect_TESTARE_AUTOMATA/assets/160391019/f858e94c-53e0-4570-860b-af9fb8cb9d52">
