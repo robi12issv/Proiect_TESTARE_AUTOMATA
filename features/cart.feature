@@ -11,7 +11,7 @@ Feature: Adding products to cart
  Scenario Outline: Adding the product from the products page
    Given I am on the chargers page
    When I add it to cart
-   Then I verify "<pg_title>"
+   Then I compare the page title with "<pg_title>"
 
    Examples:
      | pg_title                   |
