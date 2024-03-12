@@ -21,11 +21,8 @@ THE PROJECT'S STRUCTURE:
 The project is structured into 4 main folders:
 
 - "utils", where the main class and its methods are defined, which are applied to each test performed on the site;
-
 - "pages", where Python files are stored containing the lines of code related to the classes and methods necessary for each test individually;
-
 - "steps" where BDD Python files are stored containing the steps corresponding to the correct execution of each test;
-
 - "features" with the Gerkin files ".feature" that contain the features and scenarios that are to be tested.
 
 PROJECT USE INSTRUCTIONS
