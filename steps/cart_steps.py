@@ -41,7 +41,7 @@ def step_impl(context):
     context.page.add_2_to_cart()
 
 
-@then('I verify "{pg_title}"')
+@then('I compare the page title with "{pg_title}"')
 def step_impl(context, pg_title: str):
     context.page.page_title(pg_title)
 
